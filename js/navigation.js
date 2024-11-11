@@ -5,6 +5,24 @@
  * navigation support for dropdown menus.
  */
 ( function() {
+
+// Select all navigation links
+const navLinks = document.querySelectorAll('.nav-link');
+
+// Loop through each link and add a click event listener
+navLinks.forEach(link => {
+  link.addEventListener('click', function() {
+    // Remove 'active' class from all nav links
+    navLinks.forEach(item => item.classList.remove('active'));
+
+    // Add 'active' class to the clicked nav link
+    this.classList.add('active');
+
+	console.log("called");
+
+  });
+});
+
 	const siteNavigation = document.getElementById( 'site-navigation' );
 
 	// Return early if the navigation doesn't exist.
@@ -56,7 +74,7 @@
 	const links = menu.getElementsByTagName( 'a' );
 
 	// Get all the link elements with children within the menu.
-	const linksWithChildren = menu.querySelectorAll( '.menu-item-has-children > a, .page_item_has_children > a' );
+	const linksWithChildren = menu.querySelectorAll( '.menu-item-has-children > a, .page_item_has_children > a, .nav-item > a' );
 
 	// Toggle focus each time a menu link is focused or blurred.
 	for ( const link of links ) {
@@ -96,4 +114,8 @@
 			menuItem.classList.toggle( 'focus' );
 		}
 	}
+
+
+
+
 }() );

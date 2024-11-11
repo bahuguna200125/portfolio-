@@ -46,18 +46,51 @@
 				<p class="site-description"><?php echo $portfolio_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 			<?php endif; ?>
 		</div><!-- .site-branding -->
+		<nav class="navbar navbar-expand-lg ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">AMIT BAHUGUNA </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+	<?php
+// Get the menu by its name
+$menu_name = 'menu-1';
+$menu_locations = get_nav_menu_locations(); // Get the menu locations set in the theme
+$menu_id = $menu_locations[$menu_name]; // Get the ID of the menu assigned to the location
+$menu_items = wp_get_nav_menu_items($menu_id); // Get the menu item
+// Check if the menu items exist
+if ($menu_items) {
+    echo '<ul class="navbar-nav nav-underline">'; // Start the menu list
 
-		<nav id="site-navigation" class="main-navigation">
+    // Get the current URL and normalize it
+    $current_url = rtrim(home_url(add_query_arg(array(), $wp->request)), '/');
 
-		<div class=" name ">AMIT BAHUGUNA</div>
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'portfolio' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
+    // Use a for loop to iterate over the menu items
+    for ($i = 0; $i < count($menu_items); $i++) {
+        $item = $menu_items[$i];
+        $title = $item->title;
+        $url = rtrim($item->url, '/'); // Normalize the menu URL
+
+        // Remove "/index.php" from the URL if it exists
+        $normalized_url = str_replace('/index.php', '', $url);
+
+        // Check if the current URL matches the normalized menu URL
+        $active_class = ($current_url === $normalized_url) ? 'active' : '';
+
+        // Output the menu item
+        echo '<li class="nav-item">';
+        echo '<a class="nav-link ' . $active_class . '" href="' . esc_url($item->url) . '">' . esc_html($title) . '</a>';
+        echo '</li>';
+    }
+
+    echo '</ul>'; // End the menu list
+}
+
+?>
+	
+
+    </div>
+  </div>
+</nav>
 	</header><!-- #masthead -->
