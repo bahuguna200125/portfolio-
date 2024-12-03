@@ -15,43 +15,56 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+	<main id="primary" class="site-main mt-5 ">
+	<div class="container-lg d-flex justify-content-center "> 
+  <div class="row   shadow p-3 mb-5 bg-white rounded">
+    <div class="col-lg-6 col-md-6 col-sm-12 ">
+    <div class="row fs-1 fw-bold text-center ms-5 "> Hello There!</div>
+	<div class="row fs-1 fw-bold text-center ms-5 "> I'm Amit Bahuguna. </div>
+	 <div class="row  fs-4 mt-5 ms-5">I'm a Full Stack developer Intern.</div>   
+     <div class="row  fs-5 mt-5 ms-5"></div>   
+    </div>
+   
+ 
 
-		<?php
-		if ( have_posts() ) :
+   
+    <div class="col-lg-6  col-md-6 col-sm-12 d-flex justify-content-center">
+	<img src="<?php echo get_template_directory_uri()."/assets/images/myimage.jpg"; ?> " height="50" class="img-fluid  rounded" alt="amit profile photo">
+    </div>
+  </div>
+  </div>
+    
+    <div class="container-fluid "> 
 
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
+    <div class="row fs-3 fw-bold justify-content-center"> My Project's</div>
 
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+      <div class="row justify-content-between p-5"> 
+      <div class=" row col-lg-3 col-md-5 col-sm-8 d-flex justify-content-center shadow-lg  p-3 mb-5 bg-white rounded  ">
+      <img src="<?php echo get_template_directory_uri()."/assets/images/resultmanagement.jpg"; ?> " height="50" class=" rounded" alt="amit profile photo">
+      <div class="row fs-5 fw-bold  justify-content-center " > Result Management System</div>
+      <div class="row fs-5 "> This project is a simple and user-friendly Result Management System built using PHP, HTML, CSS, and MySQL for the database.
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+ </div>
+      </div>
 
-			endwhile;
+   
+      <div class=" row col-lg-3 col-md-5 col-sm-8 d-flex justify-content-center  shadow-lg p-3 mb-5 bg-white rounded  ">
+      <img src="<?php echo get_template_directory_uri()."/assets/images/resultmanagement.jpg"; ?> " height="50" class=" rounded" alt="amit profile photo">
+     <div class="row fs-5 fw-bold  justify-content-center "> portfolio site </div>
+     <div class="row fs-5 ">This is a simple personal website created using HTML, CSS, and PHP. It serves as a basic introduction to my work . </div>
+      </div>
+      <div class=" row col-lg-3 col-md-5 col-sm-8 d-flex justify-content-center shadow-lg p-3 mb-5 bg-white rounded  ">
+      <img src="<?php echo get_template_directory_uri()."/assets/images/resultmanagement.jpg"; ?> " height="50" class=" rounded" alt="amit profile photo">
+      <div class="row fs-5 fw-bold  justify-content-center"> portfolio site using wordpress</div>
+      <div class="row fs-5 ">  This is a portfolio website built using WordPress. It highlights my projects and provides a detailed overview of my work.</div>
+      </div>
+      
 
-			the_posts_navigation();
 
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
+      </div>
+    </div>
 
 	</main><!-- #main -->
 
 <?php
-get_sidebar();
 get_footer();
