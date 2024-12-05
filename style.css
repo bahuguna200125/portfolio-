@@ -1004,3 +1004,21 @@ color:black;
 .img-fluid{
 	height:500px ;
 }
+
+.link {
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.link:hover {
+    background-color: #f8f9fa;
+    transform: scale(1.02);
+}
+.main-body {
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+  }
+
+
+

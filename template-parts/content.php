@@ -9,8 +9,10 @@
 
 ?>
 
+<div class="container w-75">
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
+		
 		<?php
 		if ( is_singular() ) :
 			the_title( '<h1 class="entry-title">', '</h1>' );
@@ -20,12 +22,12 @@
 
 		if ( 'post' === get_post_type() ) :
 			?>
-			<div class="entry-meta">
-				<?php
-				portfolio_posted_on();
-				portfolio_posted_by();
-				?>
-			</div><!-- .entry-meta -->
+			<!-- <div class="entry-meta"> -->
+				<!-- <?php
+				// portfolio_posted_on();
+				// portfolio_posted_by();
+				// ?> -->
+			<!-- </div>.entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
@@ -58,6 +60,8 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php portfolio_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
+		<!-- <?php // portfolio_entry_footer(); ?> -->
+	</footer
+	
+	><!-- .entry-footer -->
+</article> </div><!-- #post-<?php the_ID(); ?> -->

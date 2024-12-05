@@ -34,35 +34,67 @@ get_header();
   </div>
   </div>
     
-    <div class="container-fluid "> 
-
+  <section id="projects">
+  <div class="container-fluid"> 
+    
     <div class="row fs-3 fw-bold justify-content-center"> My Project's</div>
+    <div class="row justify-content-between p-5"> 
+        <div class="link row col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center shadow-lg p-3 mb-5 bg-white rounded" 
+            onclick="window.open('http://localhost:8080/wordpress/index.php/2024/12/04/result-management-system/', '_blank');">
+            <img src="<?php echo get_template_directory_uri().'/assets/images/resultmanagement.jpg'; ?>" height="100" class="rounded" alt="Result Management System">
+            <div class="row fs-5 fw-bold justify-content-center">Result Management System</div>
+            <div class="row fs-5">This project is a simple and user-friendly Result Management System built using PHP, HTML, CSS, and MySQL for the database.</div>
+        </div>
 
-      <div class="row justify-content-between p-5"> 
-      <div class=" row col-lg-3 col-md-5 col-sm-8 d-flex justify-content-center shadow-lg  p-3 mb-5 bg-white rounded  ">
-      <img src="<?php echo get_template_directory_uri()."/assets/images/resultmanagement.jpg"; ?> " height="50" class=" rounded" alt="amit profile photo">
-      <div class="row fs-5 fw-bold  justify-content-center " > Result Management System</div>
-      <div class="row fs-5 "> This project is a simple and user-friendly Result Management System built using PHP, HTML, CSS, and MySQL for the database.
+        <div class="link row col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center shadow-lg p-3 mb-5 bg-white rounded" 
+            onclick="window.open('http://localhost:8080/wordpress/index.php/2024/12/04/simple-portfolio-site/', '_blank');">
+            <img src="<?php echo get_template_directory_uri().'/assets/images/simpleportfolio.jpeg'; ?>" height="100" class="rounded" alt="Simple Portfolio Site">
+            <div class="row fs-5 fw-bold justify-content-center">Portfolio Site</div>
+            <div class="row fs-5">This is a simple personal website created using HTML, CSS, and PHP. It serves as a basic introduction to my work.</div>
+        </div>
 
- </div>
-      </div>
-
-   
-      <div class=" row col-lg-3 col-md-5 col-sm-8 d-flex justify-content-center  shadow-lg p-3 mb-5 bg-white rounded  ">
-      <img src="<?php echo get_template_directory_uri()."/assets/images/resultmanagement.jpg"; ?> " height="50" class=" rounded" alt="amit profile photo">
-     <div class="row fs-5 fw-bold  justify-content-center "> portfolio site </div>
-     <div class="row fs-5 ">This is a simple personal website created using HTML, CSS, and PHP. It serves as a basic introduction to my work . </div>
-      </div>
-      <div class=" row col-lg-3 col-md-5 col-sm-8 d-flex justify-content-center shadow-lg p-3 mb-5 bg-white rounded  ">
-      <img src="<?php echo get_template_directory_uri()."/assets/images/resultmanagement.jpg"; ?> " height="50" class=" rounded" alt="amit profile photo">
-      <div class="row fs-5 fw-bold  justify-content-center"> portfolio site using wordpress</div>
-      <div class="row fs-5 ">  This is a portfolio website built using WordPress. It highlights my projects and provides a detailed overview of my work.</div>
-      </div>
-      
-
-
-      </div>
+        <div class="link row col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center shadow-lg p-3 mb-5 bg-white rounded" 
+            onclick="window.open('http://localhost:8080/wordpress/index.php/2024/12/04/portfolio-site-using-wordpress/', '_blank');">
+            <img src="<?php echo get_template_directory_uri().'/assets/images/portfoliousingwp.png'; ?>" height="100" class="rounded" alt="Portfolio Site Using WordPress">
+            <div class="row fs-5 fw-bold justify-content-center">Portfolio Site Using WordPress</div>
+            <div class="row fs-5">This is a portfolio website built using WordPress. It highlights my projects and provides a detailed overview of my work.</div>
+        </div>
     </div>
+</div>
+</section>
+
+<div class="container">
+  <div style="text-align:center">
+    <h2>Contact Me< h2>
+    <p>Swing by for a cup of coffee, or leave us a message:</p>
+  </div>
+  <div class="row">
+    <div class="column">
+      <img src="/w3images/map.jpg" style="width:100%">
+    </div>
+    <div class="column">
+      <form action="/action_page.php">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        <label for="country">Country</label>
+        <select id="country" name="country">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+          <option value="india">India</option>
+          
+
+        </select>
+        <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+</div>
+
 
 	</main><!-- #main -->
 
