@@ -186,4 +186,72 @@ function portfolio_theme_enqueue_scripts() {
     wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js', array('jquery'), null, true);
 }
 add_action('wp_enqueue_scripts', 'portfolio_theme_enqueue_scripts');
+function create_contact_form_table() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'contact_form_entries'; 
+
+   
+    if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+        $charset_collate = $wpdb->get_charset_collate();
+
+        
+		$sql = "CREATE TABLE $table_name (
+            id mediumint(9) NOT NULL AUTO_INCREMENT,
+            firstname tinytext NOT NULL,
+            lastname tinytext NOT NULL,
+            email text NOT NULL,
+            message text NOT NULL,
+            date datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+            PRIMARY KEY  (id),
+            UNIQUE KEY email (email(255))
+        ) $charset_collate;";
+
+
+
+
+        // Include the WordPress upgrade file to use dbDelta
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
+    }
+}
+add_action('init', 'create_contact_form_table');
+
+function handle_contact_form_submission() {
+    // Verify nonce for security
+    if (!isset($_POST['contact_form_nonce_field']) || !wp_verify_nonce($_POST['contact_form_nonce_field'], 'contact_form_nonce')) {
+        wp_die('Invalid submission.');
+    }
+
+    // Sanitize and validate the form data
+    $fname    = sanitize_text_field($_POST['fname']);
+	$lname    = sanitize_text_field($_POST['lname']);
+    $email   = sanitize_email($_POST['email']);
+    $message = sanitize_textarea_field($_POST['message']);
+
+    // Save the data into the database
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'contact_form_entries';
+    $wpdb->insert(
+        $table_name,
+        array(
+            'firstname'    => $fname,
+			'lastname'    => $lname,	
+			'email'   => $email,
+            'message' => $message,
+            'date'    => current_time('mysql'),
+        )
+    );
+
+	echo '<p>Thank you for contacting me! Your message has been sent.</p>';
+    // Redirect to a thank-you page
+    wp_redirect(home_url(path: '/?p=52/'));
+    exit;
+}
+
+// Hook for logged-in users
+add_action('admin_post_submit_contact_form', 'handle_contact_form_submission');
+
+// Hook for guests
+add_action('admin_post_nopriv_submit_contact_form', 'handle_contact_form_submission');
+
 
