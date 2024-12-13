@@ -18,8 +18,8 @@
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
 	<?php wp_head(); ?>
 </head>
@@ -30,7 +30,6 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'portfolio' ); ?></a>
 
 	<header id="masthead" class="site-header">
-
 
 		<div class="site-branding" style="display: none;" >
 			<?php
@@ -51,50 +50,43 @@
 			<?php endif; ?>
 		</div><!-- .site-branding -->
 		<nav class="navbar navbar-expand-lg ">
-  <div class="container-fluid">
-    <a class="navbar-brand fs-5 fw-bold " href="<?php echo esc_url( home_url( '/' ) );?>">AMIT BAHUGUNA </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-	<?php
-// Get the menu by its name
+		  <div class="container-fluid">
+			<a class="navbar-brand fs-5 fw-bold " href="<?php echo esc_url( home_url( '/' ) );?>">AMIT BAHUGUNA </a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+			<?php
 $menu_name = 'menu-1';
-$menu_locations = get_nav_menu_locations(); // Get the menu locations set in the theme
-$menu_id = $menu_locations[$menu_name]; // Get the ID of the menu assigned to the location
-$menu_items = wp_get_nav_menu_items($menu_id); // Get the menu item
-// Check if the menu items exist
+$menu_locations = get_nav_menu_locations();
+$menu_id = $menu_locations[$menu_name] ?? null;
+$menu_items = $menu_id ? wp_get_nav_menu_items($menu_id) : [];
+
 if ($menu_items) {
-    echo '<ul class="navbar-nav nav-underline">'; // Start the menu list
+    echo '<ul class="navbar-nav nav-underline">';
 
-    // Get the current URL and normalize it
-    $current_url = rtrim(home_url(add_query_arg(array(), $wp->request)), '/');
+    foreach ($menu_items as $item) {
+        $active_class = '';
 
-    // Use a for loop to iterate over the menu items
-    for ($i = 0; $i < count($menu_items); $i++) {
-        $item = $menu_items[$i];
-        $title = $item->title;
-        $url = rtrim($item->url, '/'); // Normalize the menu URL
+        // Determine if this menu item should be active
+        if (
+            ($item->url === home_url('/') && is_front_page()) ||
+            ($item->url === get_permalink() && is_page()) ||
+            ($item->url === get_post_type_archive_link('project') && (is_post_type_archive('project') || is_singular('project'))) ||
+            ($item->url === get_permalink(get_option('page_for_posts')) && is_home())
+        ) {
+            $active_class = 'active';
+        }
 
-        // Remove "/index.php" from the URL if it exists
-        $normalized_url = str_replace('/index.php', '', $url);
-
-        // Check if the current URL matches the normalized menu URL
-        $active_class = ($current_url === $normalized_url) ? 'active' : '';
-
-        // Output the menu item
         echo '<li class="nav-item">';
-        echo '<a class="nav-link ' . $active_class . '" href="' . esc_url($item->url) . '">' . esc_html($title) . '</a>';
+        echo '<a class="nav-link ' . $active_class . '" href="' . esc_url($item->url) . '">' . esc_html($item->title) . '</a>';
         echo '</li>';
     }
 
-    echo '</ul>'; // End the menu list
+    echo '</ul>';
 }
-
-?>
-	
-
-    </div>
-  </div>
-</nav>
+			?>
+			</div>
+		  </div>
+		</nav>
 	</header><!-- #masthead -->

@@ -1019,20 +1019,12 @@ color:black;
 	font-weight: 400;
 	font-style: normal;
   }
+  .breadcrumb-item{
  
-  /* .btn-primary {
-    background-color: #007bff;
-    border: none;
-    border-radius: 50px;
-  }
-  .btn-primary:hover {
-    background-color: #0056b3;
-  }
-  .contact-section img {
-    max-width: 300px;
-    height: auto;
-  } */
+  a { color:#030303 !important; }
+  a:hover, a:visited { color:#0b0b0b !important; }
 
+  }
 
 
 

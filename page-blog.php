@@ -7,7 +7,6 @@
 
 get_header();
 
-
 $args = array(
     'category_name' => 'blog', // Get posts from the specific category ID
     'posts_per_page' => 10, // Number of posts to show

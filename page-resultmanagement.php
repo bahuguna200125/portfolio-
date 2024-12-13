@@ -6,7 +6,15 @@
 <?php 
 
 get_header();?>
-    <div class="container w-75">
+ <div class="container w-75">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb mt-5 container w-75 ml-5">
+    <li class="breadcrumb-item"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo esc_url( home_url( '/' )."#projects" ); ?>">Projects</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Result-Management</li>
+  </ol>
+</nav>
+   
     <div class="heading container w-75">
         <h1>RESULT MANAGEMENT SYSTEM</h1>
     </div>
